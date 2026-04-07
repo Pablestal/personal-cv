@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(identify \"c:\\\\Users\\\\pestevez\\\\Desktop\\\\cv-astro\\\\public\\\\assets\\\\pablo.jpeg\")",
+      "Bash(node -e \":*)",
+      "Bash(find /c/Users/pestevez/Desktop/cv-astro -name \".gitignore\" -exec cat {} \\\\;)",
+      "Bash(tree -L 3 /c/Users/pestevez/Desktop/cv-astro --ignore node_modules)"
+    ]
+  }
+}

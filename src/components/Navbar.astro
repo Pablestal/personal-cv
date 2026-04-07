@@ -1,0 +1,55 @@
+---
+import { translations } from '../i18n/translations';
+---
+
+<nav class="navbar">
+  <span class="navbar-brand">Pablo Estévez Álvarez</span>
+  <div class="navbar-right">
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang-btn="es">ES</button>
+      <button class="lang-btn" data-lang-btn="en">EN</button>
+    </div>
+    <button class="pdf-btn" id="pdf-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      <span lang="es">{translations.es.nav.downloadPdf}</span>
+      <span lang="en">{translations.en.nav.downloadPdf}</span>
+    </button>
+  </div>
+</nav>
+
+<script>
+  function setLang(lang: string) {
+    document.documentElement.lang = lang;
+    localStorage.setItem('cv_lang', lang);
+    document.querySelectorAll('[data-lang-btn]').forEach((btn) => {
+      const el = btn as HTMLElement;
+      if (el.dataset.langBtn === lang) {
+        el.classList.add('active');
+      } else {
+        el.classList.remove('active');
+      }
+    });
+  }
+
+  const savedLang = localStorage.getItem('cv_lang') || 'es';
+  setLang(savedLang);
+
+  document.querySelectorAll('[data-lang-btn]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const el = btn as HTMLElement;
+      const lang = el.dataset.langBtn;
+      if (lang) setLang(lang);
+    });
+  });
+
+  const pdfBtn = document.getElementById('pdf-btn');
+  if (pdfBtn) {
+    pdfBtn.addEventListener('click', () => {
+      window.print();
+    });
+  }
+</script>

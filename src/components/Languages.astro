@@ -1,0 +1,37 @@
+---
+import { translations } from '../i18n/translations';
+
+const esLangs = translations.es.languages;
+const enLangs = translations.en.languages;
+---
+
+<section class="section">
+  <h2 class="section-title">
+    <span class="section-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="2" y1="12" x2="22" y2="12"/>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+    </span>
+    <span lang="es">{esLangs.title}</span>
+    <span lang="en">{enLangs.title}</span>
+  </h2>
+  <div class="languages-grid">
+    {esLangs.items.map((item, i) => {
+      const enItem = enLangs.items[i];
+      return (
+        <div class="language-item">
+          <p class="language-name">
+            <span lang="es">{item.name}</span>
+            <span lang="en">{enItem.name}</span>
+          </p>
+          <p class="language-level">
+            <span lang="es">{item.level}</span>
+            <span lang="en">{enItem.level}</span>
+          </p>
+        </div>
+      );
+    })}
+  </div>
+</section>
