@@ -2,6 +2,7 @@
 // See .env.example for the required variables.
 export const contact = {
   name: 'Pablo Estévez Álvarez',
+  photo: '/assets/pablo-thumb.jpeg',
   location: 'A Coruña, Spain',
   email: {
     user: import.meta.env.CONTACT_EMAIL_USER as string,
