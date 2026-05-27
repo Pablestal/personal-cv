@@ -1,12 +1,16 @@
 @import "tailwindcss";
 
+:root {
+  --color-primary: #2563eb;
+  --color-border: #e5e7eb;
+  --color-primary-light: #eff6ff;
+}
+
 /* Base */
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
-html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  -webkit-font-smoothing: antialiased;
 }
 
 /* Language visibility — driven by JS on <html lang=""> */
@@ -14,7 +18,7 @@ html[lang="es"] [lang="en"] { display: none; }
 html[lang="en"] [lang="es"] { display: none; }
 
 /* Lang button active state — set via JS classList */
-.lang-btn.active { background: #2563eb; color: #fff; }
+.lang-btn.active { background: var(--color-primary); color: #fff; }
 
 /* Timeline connector line — pseudo-element not expressible in Tailwind */
 .job:not(:last-child)::after {
@@ -24,7 +28,7 @@ html[lang="en"] [lang="es"] { display: none; }
   top: 22px;
   bottom: calc(-1rem - 14px);
   width: 2px;
-  background: #e5e7eb;
+  background: var(--color-border);
 }
 
 /* Bullet point markers */
@@ -39,7 +43,7 @@ html[lang="en"] [lang="es"] { display: none; }
   top: 0.55em;
   width: 5px;
   height: 5px;
-  background: #2563eb;
+  background: var(--color-primary);
   border-radius: 50%;
 }
 
@@ -50,46 +54,47 @@ html[lang="en"] [lang="es"] { display: none; }
   .timeline { overflow: visible !important; padding-left: 2.25rem !important; }
   .job:not(:last-child)::after {
     bottom: calc(-1.25rem - 14px);
-    background: #e5e7eb !important;
+    background: var(--color-border) !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
   .job-dot {
     background: white !important;
-    border-color: #e5e7eb !important;
+    border-color: var(--color-border) !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
   .job-dot--active {
-    background: #2563eb !important;
+    background: var(--color-primary) !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
   .job-bullets li::before {
-    background: #2563eb !important;
+    background: var(--color-primary) !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
   .badge-current {
-    background: #2563eb !important;
+    background: var(--color-primary) !important;
     color: white !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
   .tag {
-    background: #eff6ff !important;
-    color: #2563eb !important;
+    background: var(--color-primary-light) !important;
+    color: var(--color-primary) !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
   .section-icon {
-    background: #eff6ff !important;
+    background: var(--color-primary-light) !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-  .section-icon--green {
-    background: #f0fdf4 !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+  h2:has(.section-icon) {
+    break-inside: avoid;
+  }
+  .job-header {
+    break-inside: avoid;
   }
 }

@@ -2,13 +2,15 @@
 import '../styles/global.css';
 ---
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pablo Estévez Álvarez — Frontend Developer</title>
+  <meta name="description" content="CV de Pablo Estévez Álvarez — Frontend Developer con experiencia en React, TypeScript y desarrollo web moderno." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script is:inline>
     (function() {
@@ -17,7 +19,7 @@ import '../styles/global.css';
     })();
   </script>
 </head>
-<body class="bg-gray-50 text-gray-700 leading-relaxed">
+<body class="bg-gray-50 text-gray-700 leading-relaxed antialiased">
   <slot />
 </body>
 </html>

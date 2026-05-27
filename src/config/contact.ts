@@ -5,11 +5,11 @@ export const contact = {
   photo: '/assets/pablo-thumb.jpeg',
   location: 'A Coruña, Spain',
   email: {
-    user: import.meta.env.CONTACT_EMAIL_USER as string,
-    domain: import.meta.env.CONTACT_EMAIL_DOMAIN as string,
+    user: (import.meta.env.CONTACT_EMAIL_USER ?? '') as string,
+    domain: (import.meta.env.CONTACT_EMAIL_DOMAIN ?? '') as string,
   },
   phone: {
-    parts: (import.meta.env.CONTACT_PHONE_PARTS as string).split(','),
+    parts: ((import.meta.env.CONTACT_PHONE_PARTS ?? '') as string).split(',').filter(Boolean),
   },
   linkedIn: {
     url: 'https://linkedin.com/in/pablestal',

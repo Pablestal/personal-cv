@@ -6,10 +6,10 @@ import { translations } from '../i18n/translations';
   <span class="text-[0.9rem] font-semibold text-gray-900 max-sm:hidden">Pablo Estévez Álvarez</span>
   <div class="flex items-center gap-3">
     <div class="flex border border-gray-200 rounded-full overflow-hidden">
-      <button class="lang-btn px-3 py-[0.28rem] text-[0.78rem] font-semibold bg-transparent border-none cursor-pointer text-gray-500 transition-[background,color] duration-150" data-lang-btn="es">ES</button>
-      <button class="lang-btn px-3 py-[0.28rem] text-[0.78rem] font-semibold bg-transparent border-none cursor-pointer text-gray-500 transition-[background,color] duration-150" data-lang-btn="en">EN</button>
+      <button class="lang-btn px-3 py-[0.28rem] text-[0.78rem] font-semibold bg-transparent border-none cursor-pointer text-gray-500 transition-[background,color] duration-150" data-lang-btn="es" aria-label="Español" aria-pressed="false">ES</button>
+      <button class="lang-btn px-3 py-[0.28rem] text-[0.78rem] font-semibold bg-transparent border-none cursor-pointer text-gray-500 transition-[background,color] duration-150" data-lang-btn="en" aria-label="English" aria-pressed="false">EN</button>
     </div>
-    <button class="flex items-center gap-[0.35rem] px-[0.85rem] py-[0.35rem] bg-blue-600 text-white border-none rounded-full text-[0.78rem] font-semibold cursor-pointer transition-opacity duration-150 hover:opacity-85" id="pdf-btn">
+    <button class="flex items-center gap-[0.35rem] px-[0.85rem] py-[0.35rem] bg-blue-600 text-white border-none rounded-full text-[0.78rem] font-semibold cursor-pointer transition-opacity duration-150 hover:opacity-85" id="pdf-btn" aria-label="Descargar CV en PDF">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-[13px] h-[13px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
         <polyline points="7 10 12 15 17 10"/>
@@ -27,15 +27,13 @@ import { translations } from '../i18n/translations';
     localStorage.setItem('cv_lang', lang);
     document.querySelectorAll('[data-lang-btn]').forEach((btn) => {
       const el = btn as HTMLElement;
-      if (el.dataset.langBtn === lang) {
-        el.classList.add('active');
-      } else {
-        el.classList.remove('active');
-      }
+      const isActive = el.dataset.langBtn === lang;
+      el.classList.toggle('active', isActive);
+      el.setAttribute('aria-pressed', String(isActive));
     });
   }
 
-  const savedLang = localStorage.getItem('cv_lang') || 'es';
+  const savedLang = document.documentElement.lang || 'es';
   setLang(savedLang);
 
   document.querySelectorAll('[data-lang-btn]').forEach((btn) => {

@@ -3,14 +3,14 @@ import { translations } from '../i18n/translations';
 import { contact } from '../config/contact';
 ---
 
-<header class="flex pb-8">
+<header class="flex pb-5">
   <!-- Uncomment this block to show header picture -->
   <!-- <div class="w-[110px] h-[140px] shrink-0 rounded-[20%] border-[3px] border-blue-100 overflow-hidden">
     <img src={contact.photo} alt={contact.name} class="w-full h-full object-cover object-top block" />
   </div> -->
   <div class="flex flex-col w-full">
     <h1 class="text-[2rem] font-bold text-gray-900 tracking-[-0.02em]">{contact.name}</h1>
-    <p class="text-base font-medium text-blue-600 mt-1 mb-5">
+    <p class="text-base font-medium text-blue-600 mt-1 mb-4">
       <span lang="es">{translations.es.header.title}</span>
       <span lang="en">{translations.en.header.title}</span>
     </p>
@@ -35,7 +35,7 @@ import { contact } from '../config/contact';
         </svg>
         <span id="header-phone-text"></span>
       </span>
-      <a class="flex items-center gap-[0.35rem] text-[0.85rem] text-gray-500 hover:text-blue-600" href={contact.linkedIn.url} target="_blank">
+      <a class="flex items-center gap-[0.35rem] text-[0.85rem] text-gray-500 hover:text-blue-600" href={contact.linkedIn.url} target="_blank" rel="noopener noreferrer">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
           <rect x="2" y="9" width="4" height="12"/>
