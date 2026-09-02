@@ -1,15 +1,80 @@
 ---
 import { translations } from '../i18n/translations';
+import { presets, defaultPrimary } from '../config/theme';
+
+const esNav = translations.es.nav;
+const enNav = translations.en.nav;
 ---
 
 <nav class="sticky top-0 z-[100] bg-white border-b border-gray-200 px-6 py-[0.65rem] flex items-center justify-between shadow-[0_1px_4px_rgba(0,0,0,0.05)] print:hidden">
   <span class="text-[0.9rem] font-semibold text-gray-900 max-sm:hidden">Pablo Estévez Álvarez</span>
   <div class="flex items-center gap-3">
+    <div class="relative" data-color-menu>
+      <button
+        class="flex items-center border border-gray-200 rounded-full p-[0.28rem] bg-white cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
+        id="color-trigger"
+        type="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-controls="color-panel"
+        aria-label={esNav.accentColor}
+        data-label-es={esNav.accentColor}
+        data-label-en={enNav.accentColor}
+      >
+        <span class="w-[15px] h-[15px] rounded-full bg-[var(--color-primary)] border border-black/15"></span>
+      </button>
+
+      <div
+        class="absolute left-0 top-[calc(100%+0.5rem)] bg-white border border-gray-200 rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.12)] p-3 w-max"
+        id="color-panel"
+        hidden
+      >
+        <div class="grid grid-cols-3 gap-2">
+          {presets.map((preset) => (
+            <button
+              class="color-btn w-[18px] h-[18px] rounded-full border border-black/15 cursor-pointer p-0 transition-transform duration-150 hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
+              type="button"
+              style={`background:${preset.primary}`}
+              data-preset={preset.primary}
+              aria-pressed="false"
+              aria-label={preset.label.es}
+              data-label-es={preset.label.es}
+              data-label-en={preset.label.en}
+            ></button>
+          ))}
+        </div>
+
+        <hr class="border-none border-t border-gray-200 my-[0.6rem]" />
+
+        <button
+          class="flex items-center gap-[0.35rem] w-full text-left text-[0.78rem] text-[var(--color-primary)] font-medium bg-transparent border-none p-0 cursor-pointer decoration-from-font underline-offset-2 hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
+          id="custom-color-btn"
+          type="button"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-[13px] h-[13px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m2 22 1-1h3l9-9"/>
+            <path d="M3 21v-3l9-9"/>
+            <path d="m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l.4.4a2.1 2.1 0 1 1-3 3l-3.8-3.8a2.1 2.1 0 1 1 3-3l.4.4Z"/>
+          </svg>
+          <span lang="es">{esNav.customColor}</span>
+          <span lang="en">{enNav.customColor}</span>
+        </button>
+
+        <input
+          class="sr-only"
+          type="color"
+          id="color-picker"
+          value={defaultPrimary}
+          tabindex="-1"
+          aria-hidden="true"
+        />
+      </div>
+    </div>
     <div class="flex border border-gray-200 rounded-full overflow-hidden">
       <button class="lang-btn px-3 py-[0.28rem] text-[0.78rem] font-semibold bg-transparent border-none cursor-pointer text-gray-500 transition-[background,color] duration-150" data-lang-btn="es" aria-label="Español" aria-pressed="false">ES</button>
       <button class="lang-btn px-3 py-[0.28rem] text-[0.78rem] font-semibold bg-transparent border-none cursor-pointer text-gray-500 transition-[background,color] duration-150" data-lang-btn="en" aria-label="English" aria-pressed="false">EN</button>
     </div>
-    <button class="flex items-center gap-[0.35rem] px-[0.85rem] py-[0.35rem] bg-blue-600 text-white border-none rounded-full text-[0.78rem] font-semibold cursor-pointer transition-opacity duration-150 hover:opacity-85" id="pdf-btn" aria-label="Descargar CV en PDF">
+    <button class="flex items-center gap-[0.35rem] px-[0.85rem] py-[0.35rem] bg-[var(--color-primary)] text-white border-none rounded-full text-[0.78rem] font-semibold cursor-pointer transition-opacity duration-150 hover:opacity-85" id="pdf-btn" aria-label="Descargar CV en PDF">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-[13px] h-[13px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
         <polyline points="7 10 12 15 17 10"/>
@@ -22,6 +87,8 @@ import { translations } from '../i18n/translations';
 </nav>
 
 <script>
+  import { toReadableAccent, themeStorageKey, defaultPrimary } from '../config/theme';
+
   function setLang(lang: string) {
     document.documentElement.lang = lang;
     localStorage.setItem('cv_lang', lang);
@@ -30,6 +97,12 @@ import { translations } from '../i18n/translations';
       const isActive = el.dataset.langBtn === lang;
       el.classList.toggle('active', isActive);
       el.setAttribute('aria-pressed', String(isActive));
+    });
+    // The colour trigger and swatches carry no text, so their only accessible
+    // name is the aria-label — it has to follow the selected language.
+    document.querySelectorAll<HTMLElement>('[data-label-es]').forEach((el) => {
+      const label = lang === 'en' ? el.dataset.labelEn : el.dataset.labelEs;
+      if (label) el.setAttribute('aria-label', label);
     });
   }
 
@@ -43,6 +116,96 @@ import { translations } from '../i18n/translations';
       if (lang) setLang(lang);
     });
   });
+
+  const colorTrigger = document.getElementById('color-trigger');
+  const colorPanel = document.getElementById('color-panel');
+  const colorPicker = document.getElementById('color-picker') as HTMLInputElement | null;
+  const customColorBtn = document.getElementById('custom-color-btn');
+
+  if (colorTrigger && colorPanel && colorPicker && customColorBtn) {
+    function markActive(accent: string) {
+      colorPicker.value = accent;
+      document.querySelectorAll<HTMLElement>('[data-preset]').forEach((el) => {
+        el.setAttribute('aria-pressed', String(el.dataset.preset === accent));
+      });
+    }
+
+    // Store the readable accent rather than the raw pick, so the inline script
+    // in Layout.astro can apply it before paint without repeating this maths.
+    function applyColor(picked: string) {
+      const accent = toReadableAccent(picked);
+      document.documentElement.style.setProperty('--color-primary', accent);
+      localStorage.setItem(themeStorageKey, accent);
+      markActive(accent);
+    }
+
+    function openPanel(open: boolean) {
+      colorPanel.hidden = !open;
+      colorTrigger.setAttribute('aria-expanded', String(open));
+    }
+
+    // Layout.astro has already applied the stored colour, so this only mirrors
+    // it in the panel — no write on load, and the default gets marked too.
+    markActive(localStorage.getItem(themeStorageKey) || defaultPrimary);
+
+    colorTrigger.addEventListener('click', () => openPanel(colorPanel.hidden));
+
+    document.querySelectorAll<HTMLElement>('[data-preset]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (btn.dataset.preset) applyColor(btn.dataset.preset);
+        openPanel(false);
+      });
+    });
+
+    // There is no API to close the native colour dialog, so the link acts as a
+    // toggle: the second click simply does not reopen it, and dropping focus is
+    // what dismisses it in browsers that keep the page interactive meanwhile.
+    let pickerOpen = false;
+
+    customColorBtn.addEventListener('click', () => {
+      if (pickerOpen) {
+        pickerOpen = false;
+        colorPicker.blur();
+        return;
+      }
+      pickerOpen = true;
+      if (typeof colorPicker.showPicker === 'function') colorPicker.showPicker();
+      else colorPicker.click();
+    });
+
+    // A committed pick means the dialog closed on its own.
+    colorPicker.addEventListener('change', () => {
+      pickerOpen = false;
+    });
+
+    // 'input' fires while dragging in the picker, for a live preview.
+    colorPicker.addEventListener('input', () => applyColor(colorPicker.value));
+
+    document.addEventListener('click', (event) => {
+      const target = event.target as Node;
+      if (customColorBtn.contains(target)) return;
+
+      // Any other click lands outside the dialog, which closes it too.
+      pickerOpen = false;
+      if (!colorPanel.hidden && !colorTrigger.contains(target) && !colorPanel.contains(target)) {
+        openPanel(false);
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+
+      if (pickerOpen) {
+        pickerOpen = false;
+        colorPicker.blur();
+        return;
+      }
+      if (!colorPanel.hidden) {
+        openPanel(false);
+        colorTrigger.focus();
+      }
+    });
+  }
 
   const pdfBtn = document.getElementById('pdf-btn');
   if (pdfBtn) {

@@ -6,9 +6,9 @@ const enLangs = translations.en.languages;
 ---
 
 <section class="mb-5">
-  <h2 class="flex items-center gap-[0.6rem] text-[1.1rem] font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-100">
-    <span class="section-icon flex items-center justify-center w-[30px] h-[30px] bg-blue-50 rounded-lg shrink-0">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <h2 class="flex items-center gap-[0.6rem] text-[1.1rem] font-bold text-gray-900 mb-4 pb-2 border-b-2 border-[var(--color-primary-border)]">
+    <span class="section-icon flex items-center justify-center w-[30px] h-[30px] bg-[var(--color-primary-light)] rounded-lg shrink-0">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[var(--color-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="10"/>
         <line x1="2" y1="12" x2="22" y2="12"/>
         <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
@@ -21,7 +21,7 @@ const enLangs = translations.en.languages;
     {esLangs.items.map((item, i) => {
       const enItem = enLangs.items[i];
       return (
-        <div class="bg-white border border-gray-200 rounded-lg py-[0.85rem] px-4 text-center shadow-sm print:shadow-none">
+        <div class="card bg-white border border-gray-200 rounded-lg py-[0.85rem] px-4 text-center shadow-sm print:shadow-none">
           <p class="text-[0.88rem] font-semibold text-gray-900">
             <span lang="es">{item.name}</span>
             <span lang="en">{enItem.name}</span>

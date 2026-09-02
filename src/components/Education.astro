@@ -8,9 +8,9 @@ const enCert = translations.en.certifications;
 ---
 
 <section class="mb-5">
-  <h2 class="flex items-center gap-[0.6rem] text-[1.1rem] font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-100">
-    <span class="section-icon flex items-center justify-center w-[30px] h-[30px] bg-blue-50 rounded-lg shrink-0">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <h2 class="flex items-center gap-[0.6rem] text-[1.1rem] font-bold text-gray-900 mb-4 pb-2 border-b-2 border-[var(--color-primary-border)]">
+    <span class="section-icon flex items-center justify-center w-[30px] h-[30px] bg-[var(--color-primary-light)] rounded-lg shrink-0">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[var(--color-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
         <path d="M6 12v5c3 3 9 3 12 0v-5"/>
       </svg>
@@ -18,8 +18,8 @@ const enCert = translations.en.certifications;
     <span lang="es">{esEdu.title}</span>
     <span lang="en">{enEdu.title}</span>
   </h2>
-  <div class="bg-white border border-gray-200 rounded-xl p-4 px-5 shadow-sm print:shadow-none">
-    <p class="text-[0.75rem] font-bold text-blue-600 mb-[0.35rem]">2020</p>
+  <div class="card bg-white border border-gray-200 rounded-xl p-4 px-5 shadow-sm print:shadow-none">
+    <p class="text-[0.75rem] font-bold text-[var(--color-primary)] mb-[0.35rem]">2020</p>
     <div class="flex items-baseline gap-2 flex-wrap">
       <h3 class="text-[0.9rem] font-semibold text-gray-900">
         <span lang="es">{esEdu.degree}</span>
@@ -35,9 +35,9 @@ const enCert = translations.en.certifications;
 </section>
 
 <section class="mb-5">
-  <h2 class="flex items-center gap-[0.6rem] text-[1.1rem] font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-100">
-    <span class="section-icon flex items-center justify-center w-[30px] h-[30px] bg-blue-50 rounded-lg shrink-0">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <h2 class="flex items-center gap-[0.6rem] text-[1.1rem] font-bold text-gray-900 mb-4 pb-2 border-b-2 border-[var(--color-primary-border)]">
+    <span class="section-icon flex items-center justify-center w-[30px] h-[30px] bg-[var(--color-primary-light)] rounded-lg shrink-0">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[var(--color-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="9 11 12 14 22 4"/>
         <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
       </svg>
@@ -46,9 +46,9 @@ const enCert = translations.en.certifications;
     <span lang="en">{enCert.title}</span>
   </h2>
   {esCert.items.map((item) => (
-    <div class="bg-white border border-gray-200 rounded-xl p-4 px-5 shadow-sm mb-2 flex items-center justify-between print:shadow-none">
+    <div class="card bg-white border border-gray-200 rounded-xl p-4 px-5 shadow-sm mb-2 flex items-center justify-between print:shadow-none">
       <div class="flex-1">
-        <p class="text-[0.75rem] font-bold text-blue-600 mb-[0.35rem]">{item.year}</p>
+        <p class="text-[0.75rem] font-bold text-[var(--color-primary)] mb-[0.35rem]">{item.year}</p>
         <div class="flex items-baseline gap-2 flex-wrap">
           <h3 class="text-[0.9rem] font-semibold text-gray-900">{item.name}</h3>
           <p class="text-[0.83rem] text-gray-500">{item.issuer}</p>

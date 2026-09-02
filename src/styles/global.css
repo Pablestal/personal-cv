@@ -1,9 +1,13 @@
 @import "tailwindcss";
 
+/* Accent colour. Only --color-primary is set at runtime by the picker in the
+   navbar (see src/config/theme.ts); the surface and border tones are derived
+   from it here, so any picked colour gets a matching pair of tints. */
 :root {
   --color-primary: #2563eb;
+  --color-primary-light: color-mix(in srgb, var(--color-primary) 7%, white);
+  --color-primary-border: color-mix(in srgb, var(--color-primary) 22%, white);
   --color-border: #e5e7eb;
-  --color-primary-light: #eff6ff;
 }
 
 /* Base */
@@ -20,15 +24,10 @@ html[lang="en"] [lang="es"] { display: none; }
 /* Lang button active state — set via JS classList */
 .lang-btn.active { background: var(--color-primary); color: #fff; }
 
-/* Timeline connector line — pseudo-element not expressible in Tailwind */
-.job:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  left: calc(-1.75rem + 7px);
-  top: 22px;
-  bottom: calc(-1rem - 14px);
-  width: 2px;
-  background: var(--color-border);
+/* Selected preset swatch — a white gap plus a neutral ring, so the marker stays
+   visible whatever colour the swatch itself is. */
+.color-btn[aria-pressed="true"] {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px #6b7280;
 }
 
 /* Bullet point markers */
@@ -51,24 +50,6 @@ html[lang="en"] [lang="es"] { display: none; }
 @media print {
   @page { size: A4; margin: 1.2cm 1.5cm; }
   body { background: white !important; font-size: 10.5pt !important; color: #111827 !important; }
-  .timeline { overflow: visible !important; padding-left: 2.25rem !important; }
-  .job:not(:last-child)::after {
-    bottom: calc(-1.25rem - 14px);
-    background: var(--color-border) !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-  .job-dot {
-    background: white !important;
-    border-color: var(--color-border) !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-  .job-dot--active {
-    background: var(--color-primary) !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
   .job-bullets li::before {
     background: var(--color-primary) !important;
     -webkit-print-color-adjust: exact;
@@ -91,10 +72,24 @@ html[lang="en"] [lang="es"] { display: none; }
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-  h2:has(.section-icon) {
+  /* Keep whole blocks together across page breaks */
+  .job,
+  .card,
+  .skills-group {
     break-inside: avoid;
   }
   .job-header {
     break-inside: avoid;
+  }
+  /* A section heading must never be the last thing on a page */
+  h2:has(.section-icon) {
+    break-inside: avoid;
+    break-after: avoid;
+  }
+  /* Avoid single dangling lines of text */
+  .job-bullets li,
+  p {
+    orphans: 2;
+    widows: 2;
   }
 }

@@ -6,9 +6,9 @@ const enSkills = translations.en.skills;
 ---
 
 <section class="mb-5">
-  <h2 class="flex items-center gap-[0.6rem] text-[1.1rem] font-bold text-gray-900 mb-4 pb-2 border-b-2 border-blue-100">
-    <span class="section-icon flex items-center justify-center w-[30px] h-[30px] bg-blue-50 rounded-lg shrink-0">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <h2 class="flex items-center gap-[0.6rem] text-[1.1rem] font-bold text-gray-900 mb-4 pb-2 border-b-2 border-[var(--color-primary-border)]">
+    <span class="section-icon flex items-center justify-center w-[30px] h-[30px] bg-[var(--color-primary-light)] rounded-lg shrink-0">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[var(--color-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="16 18 22 12 16 6"/>
         <polyline points="8 6 2 12 8 18"/>
       </svg>
@@ -27,7 +27,7 @@ const enSkills = translations.en.skills;
           </p>
           <div class="flex flex-wrap gap-[0.4rem]">
             {group.tags.map((tag) => (
-              <span class="tag bg-blue-50 text-blue-600 text-[0.78rem] font-medium px-[0.6rem] py-[0.2rem] rounded-full border border-blue-100">{tag}</span>
+              <span class="tag bg-[var(--color-primary-light)] text-[var(--color-primary)] text-[0.78rem] font-medium px-[0.6rem] py-[0.2rem] rounded-full border border-[var(--color-primary-border)]">{tag}</span>
             ))}
           </div>
         </div>

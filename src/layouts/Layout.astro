@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { themeStorageKey } from '../config/theme';
 ---
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
@@ -12,10 +13,20 @@ import '../styles/global.css';
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <script is:inline>
+  <script is:inline define:vars={{ themeStorageKey }}>
     (function() {
+      var root = document.documentElement;
+
       var lang = localStorage.getItem('cv_lang') || 'es';
-      document.documentElement.lang = lang;
+      root.lang = lang;
+
+      // Applied before first paint so the accent never flashes blue first. The
+      // stored value is already contrast-checked (see src/config/theme.ts), and
+      // the tinted tones derive from it in CSS.
+      var accent = localStorage.getItem(themeStorageKey);
+      if (/^#[0-9a-f]{6}$/i.test(accent || '')) {
+        root.style.setProperty('--color-primary', accent);
+      }
     })();
   </script>
 </head>

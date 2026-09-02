@@ -5,38 +5,38 @@ import { contact } from '../config/contact';
 
 <header class="flex pb-5">
   <!-- Uncomment this block to show header picture -->
-  <!-- <div class="w-[110px] h-[140px] shrink-0 rounded-[20%] border-[3px] border-blue-100 overflow-hidden">
+  <!-- <div class="w-[110px] h-[140px] shrink-0 rounded-[20%] border-[3px] border-[var(--color-primary-border)] overflow-hidden">
     <img src={contact.photo} alt={contact.name} class="w-full h-full object-cover object-top block" />
   </div> -->
   <div class="flex flex-col w-full">
     <h1 class="text-[2rem] font-bold text-gray-900 tracking-[-0.02em]">{contact.name}</h1>
-    <p class="text-base font-medium text-blue-600 mt-1 mb-4">
+    <p class="text-base font-medium text-[var(--color-primary)] mt-1 mb-4">
       <span lang="es">{translations.es.header.title}</span>
       <span lang="en">{translations.en.header.title}</span>
     </p>
     <div class="flex flex-wrap gap-x-5 gap-y-2 max-sm:gap-x-3 max-sm:gap-y-1.5">
       <span class="flex items-center gap-[0.35rem] text-[0.85rem] text-gray-500">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0 text-[var(--color-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
           <circle cx="12" cy="10" r="3"/>
         </svg>
         {contact.location}
       </span>
-      <a class="flex items-center gap-[0.35rem] text-[0.85rem] text-gray-500 hover:text-blue-600" id="header-email" href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <a class="flex items-center gap-[0.35rem] text-[0.85rem] text-gray-500 hover:text-[var(--color-primary)]" id="header-email" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0 text-[var(--color-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
           <polyline points="22,6 12,13 2,6"/>
         </svg>
         <span id="header-email-text"></span>
       </a>
       <span class="flex items-center gap-[0.35rem] text-[0.85rem] text-gray-500">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0 text-[var(--color-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.61 5.61l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
         </svg>
         <span id="header-phone-text"></span>
       </span>
-      <a class="flex items-center gap-[0.35rem] text-[0.85rem] text-gray-500 hover:text-blue-600" href={contact.linkedIn.url} target="_blank" rel="noopener noreferrer">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <a class="flex items-center gap-[0.35rem] text-[0.85rem] text-gray-500 hover:text-[var(--color-primary)]" href={contact.linkedIn.url} target="_blank" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0 text-[var(--color-primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
           <rect x="2" y="9" width="4" height="12"/>
           <circle cx="4" cy="4" r="2"/>

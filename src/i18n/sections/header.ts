@@ -1,4 +1,4 @@
 export const header = {
-  es: { title: 'Desarrollador Frontend' },
-  en: { title: 'Frontend Developer' },
+  es: { title: 'Desarrollador de Software' },
+  en: { title: 'Software Developer' },
 } as const;
